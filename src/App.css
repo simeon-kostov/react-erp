@@ -1,6 +1,4 @@
-.App {
-  text-align: center;
-}
+.App {}
 
 .App-logo {
   height: 40vmin;
@@ -32,7 +30,33 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.Login-container {
+  width: 40%;
+  background-color: #dcdcdc;
+  margin: 2% auto;
+  padding: 40px;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+.navigationMenu {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+.create-offer-container {
+  width: 40%;
+  background-color: #dcdcdc;
+  margin: 2% auto;
+  padding: 40px;
+  justify-content: center;
+  border-radius: 5px;
 }
