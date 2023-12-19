@@ -8,6 +8,7 @@ import { AuthContext } from '../contexts/AuthContext';
 import { userSignOut } from '../services/authService';
 import { Link } from 'react-router-dom';
 
+
 const Navigation = function () {
 
     const { userToken, userProfileInfo } = useContext(AuthContext)
@@ -20,16 +21,16 @@ const Navigation = function () {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
 
-                        {userToken && (
-                            <div className="navigationMenu">
-                                <Nav.Link><Link to="/main">Dashboard</Link></Nav.Link>
-                                <Nav.Link><Link to="/offers">Offers</Link></Nav.Link>
-                                <Nav.Link><Link to="/create-offer">Create Offer</Link></Nav.Link>
-                                <Nav.Link><Link onClick={userSignOut}>Sign out</Link></Nav.Link>
+                        {userToken && userProfileInfo && (
+                            <div className="navigation-menu">
+                                <Link to="/main">Dashboard</Link>
+                                <Link to="/offers">Offers</Link>
+                                <Link to="/create-offer" >Create Offer</Link>
+                                <Link onClick={userSignOut}>Sign out</Link>
                             </div>
                         )}
                         {!userToken && (
-                            <div id="navigationMenu">
+                            <div id="navigation-menu">
 
                             </div>
                         )}

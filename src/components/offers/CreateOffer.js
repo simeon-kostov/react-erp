@@ -1,22 +1,32 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { createOffer } from "../services/offerService";
+import { createOffer } from "../../services/offerService";
+import { AuthContext } from "../../contexts/AuthContext";
+import { OfferContext } from "../../contexts/OfferContext";
 
 const CreateOffer = function () {
 
+
+    const { userToken, userProfileInfo } = useContext(AuthContext)
+    const { maxOfferId } = useContext(OfferContext)
+
     const initialState = {
-        id: '',
+        id: maxOfferId + 1,
         product: '',
         client: '',
+        size: '',
         quantity: '',
         types: '',
         print: '',
         finishing: '',
         external: '',
         notes: '',
+        author_id: userToken.uid,
     }
 
     const [values, setValues] = useState(initialState);
+
+
 
     const handleChange = (e) => {
         setValues(state => ({ ...state, [e.target.name]: e.target.value }))
@@ -31,11 +41,10 @@ const CreateOffer = function () {
     return (
         <div className="create-offer-container" >
             <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-3" controlId="formBasicName">
-                    <Form.Label>Offer#</Form.Label>
-                    <Form.Control type="text" name="id" placeholder="Enter ID" value={values.id} onChange={handleChange} />
+                <Form.Group className="mb-3" controlId="formBasicSurame">
+                    <Form.Label>Offer Number: <b>{values.id}</b></Form.Label>
+                    <hr></hr>
                 </Form.Group>
-
                 <Form.Group className="mb-3" controlId="formBasicName">
                     <Form.Label>Product Name</Form.Label>
                     <Form.Control type="text" name="product" placeholder="Enter Product" value={values.product} onChange={handleChange} />
@@ -44,6 +53,11 @@ const CreateOffer = function () {
                 <Form.Group className="mb-3" controlId="formBasicSurame">
                     <Form.Label>Client</Form.Label>
                     <Form.Control type="text" name="client" placeholder="Enter Client" value={values.client} onChange={handleChange} />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formBasicTel">
+                    <Form.Label>Dimensions L x W x H mm</Form.Label>
+                    <Form.Control type="number" name="size" placeholder="Enter Dimensions" value={values.size} onChange={handleChange} />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicTel">

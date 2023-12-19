@@ -1,4 +1,4 @@
-import CreateOffer from "./CreateOffer";
+import CreateOffer from "./offers/CreateOffer";
 import Register from "./auth/Register";
 
 const Dashboard = function () {

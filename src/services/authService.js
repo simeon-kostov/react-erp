@@ -5,9 +5,9 @@ import {
 } from "firebase/auth";
 
 
-export const register = (values) => {
+export const register = async (values) => {
     // Register and Auto-login New User & Create Firestore Users' Collection DB Entry
-    secondaryApp.auth().createUserWithEmailAndPassword(values.email, values.password).then(userToken => {
+    await secondaryApp.auth().createUserWithEmailAndPassword(values.email, values.password).then(userToken => {
         console.log("User " + userToken.uid + " created successfully!");
         return db.collection('users').doc(userToken.user.uid).set({
             name: values.name,
@@ -35,8 +35,10 @@ export const login = (values) => {
         );
 }
 
-export const userSignOut = () => {
-    signOut(auth).then(() => {
+export const userSignOut = async () => {
+    await signOut(auth).then(() => {
         console.log("User successfully signed out!")
+
     }).catch(error => console.log(error))
+    return
 }
